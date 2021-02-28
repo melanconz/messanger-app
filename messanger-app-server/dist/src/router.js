@@ -13,22 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const router_1 = __importDefault(require("@koa/router"));
+const user_1 = require("./users/user");
 const router = new router_1.default();
 router.get("/users", (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = [
-        {
-            id: 1,
-            firstName: "User",
-            lastName: "One",
-        },
-        {
-            id: 1,
-            firstName: "User",
-            lastName: "One",
-        },
-    ];
+    const users = user_1.getUsers();
     ctx.response.status = 200;
     ctx.body = users;
+    yield next();
+}));
+router.get("/users/:id", (ctx, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = user_1.getUserById(ctx.params.id);
+    ctx.response.status = 200;
+    ctx.body = user;
     yield next();
 }));
 exports.default = router;

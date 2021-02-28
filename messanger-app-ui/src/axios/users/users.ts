@@ -9,3 +9,12 @@ export const getUsers = async () => {
     console.error("Failed to get users", err);
   }
 };
+
+export const getUserById = async (id: string) => {
+  try {
+    const response = await axios.get(`${url}/${id}`);
+    return response.data;
+  } catch (err) {
+    console.error(`Failed to get user by id: ${id}`, err);
+  }
+};

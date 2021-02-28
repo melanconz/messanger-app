@@ -1,4 +1,4 @@
-import { url, getUsers } from "./users";
+import { url, getUsers } from "../users";
 import mockAxios from "jest-mock-axios";
 
 afterEach(() => {

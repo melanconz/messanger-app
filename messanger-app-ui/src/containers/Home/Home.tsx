@@ -1,27 +1,21 @@
-import React, { ReactElement, useState, useCallback, useEffect } from "react";
-// import styled from "styled-components/macro";
-import { getUsers } from "../../axios/users";
+import React, { ReactElement } from "react";
+import styled from "styled-components";
+import UserSelection from "./UserSelection/UserSelection";
 
-// const Wrap = styled.div``;
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Home = (): ReactElement => {
-  const [users, setUsers] = useState<any>([]);
-  const fetchData = useCallback(async () => {
-    const usersResponse = await getUsers();
-    setUsers(usersResponse);
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   return (
-    <div>
-      <div>Pick User</div>
-      {users?.map((user: any) => (
-        <div>`user.firstName user.lastName`</div>
-      ))}
-    </div>
+    <Wrap>
+      <UserSelection />
+    </Wrap>
   );
 };
 
